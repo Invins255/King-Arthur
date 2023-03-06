@@ -32,7 +32,7 @@ namespace PlayerControl
 
         public override void OnUpdate()
         {
-            
+
         }
 
         private void Move()
@@ -73,7 +73,10 @@ namespace PlayerControl
 
             targetDirection = (Quaternion.Euler(0.0f, targetRotation, 0.0f) * Vector3.forward).normalized;
 
+
             Vector3 speed = targetDirection * manager.CurrentHorizontalSpeed;
+            //manager.Animator.SetFloat(manager.AnimID["VelocityX"], speed.x);
+            //manager.Animator.SetFloat(manager.AnimID["VelocityY"], speed.z);
             //使用动画运动速度进行移动
             manager.Animator.SetFloat(manager.AnimID["HorizontalSpeed"], speed.magnitude);
             manager.Controller.Move(manager.Animator.velocity * Time.deltaTime);
