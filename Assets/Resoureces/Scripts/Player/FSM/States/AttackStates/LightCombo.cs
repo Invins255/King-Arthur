@@ -49,6 +49,12 @@ namespace PlayerControl
         {
             manager.Animator.SetTrigger(manager.AnimID["LightAttack"]);
             manager.Input.lightAttack = false;
+
+            DamageMessage message = new DamageMessage();
+            message.Message = "Player light attack";
+            message.Attacker = manager.gameObject;
+            message.Weapon = manager.Inventory.RightWeapon;
+            manager.Inventory.WeaponSlotManager.SetRightWeaponDamageMessage(message);
         }
     }
 }

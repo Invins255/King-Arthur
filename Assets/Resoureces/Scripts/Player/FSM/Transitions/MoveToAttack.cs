@@ -18,6 +18,7 @@ namespace PlayerControl
 
         protected override bool Condition()
         {
+            //Get Attack input
             if (manager.Input.lightAttack || manager.Input.heavyAttack)
             {
                 return true;

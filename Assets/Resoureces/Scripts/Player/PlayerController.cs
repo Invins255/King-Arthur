@@ -22,6 +22,10 @@ namespace PlayerControl
         private PlayerStateMachine stateMachine;
         public PlayerInputs Input { get { return _input; } }
         private PlayerInputs _input;
+        public PlayerStats Stats { get { return _stats; } }
+        private PlayerStats _stats;
+        public PlayerInventory Inventory { get { return _inventory; } }
+        private PlayerInventory _inventory;
         public CharacterController Controller { get { return _controller; } }
         private CharacterController _controller;
         public Animator Animator { get { return _animator; } }
@@ -37,6 +41,8 @@ namespace PlayerControl
 
             //Get components
             _input = GetComponent<PlayerInputs>();
+            _stats = GetComponent<PlayerStats>();
+            _inventory = GetComponent<PlayerInventory>();
             _controller = GetComponent<CharacterController>();
             _animator = GetComponent<Animator>();
             _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");

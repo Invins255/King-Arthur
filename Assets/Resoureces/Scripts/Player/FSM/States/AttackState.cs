@@ -18,6 +18,7 @@ namespace PlayerControl
 
         public override void OnEnter()
         {
+            //Change attack substate by attack input
             if (manager.Input.lightAttack)
                 SetDefaultState("LightCombo");
             else if (manager.Input.heavyAttack)

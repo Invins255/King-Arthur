@@ -13,5 +13,8 @@ namespace PlayerControl
         public float RunSpeed;
         public float SpeedChangeRate;
         public float RotateSmoothTime;
+
+        [Header("Health")]
+        public int MaxHealth;
     }
 }
