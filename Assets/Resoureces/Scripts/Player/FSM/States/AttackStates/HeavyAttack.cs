@@ -21,7 +21,8 @@ namespace PlayerControl
             base.OnEnter();
             if (manager.Input.heavyAttack)
             {
-                MakeAttack();
+                manager.Attacker.HandleHeavyAttack(manager.WeaponManager.RightWeapon);
+                manager.Input.heavyAttack = false;
             }
         }
 
@@ -36,12 +37,12 @@ namespace PlayerControl
         public override void OnUpdate()
         {
             base.OnUpdate();
-        }
 
-        private void MakeAttack()
-        {
-            manager.Animator.SetTrigger(manager.AnimID["HeavyAttack"]);
-            manager.Input.heavyAttack = false;
+            if (manager.Input.heavyAttack)
+            {
+                manager.Attacker.HandleHeavyAttack(manager.WeaponManager.RightWeapon);
+                manager.Input.heavyAttack = false;
+            }
         }
     }
 }

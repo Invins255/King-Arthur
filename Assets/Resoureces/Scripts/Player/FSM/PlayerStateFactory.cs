@@ -21,6 +21,7 @@ namespace PlayerControl
             states.Add("MoveState", moveState);
             moveState.AddTransition(new MoveToAttack(manager, "MoveState", "AttackState"));
             moveState.AddTransition(new MoveToDodge(manager, "MoveState", "DodgeState"));
+            moveState.AddTransition(new MoveToDamage(manager, "MoveState", "DamageState"));
 
             AttackStateFactory attackStateFactory = new AttackStateFactory(manager);
             AttackState attackState = new AttackState(manager, attackStateFactory);
@@ -30,6 +31,10 @@ namespace PlayerControl
             DodgeState dodgeState = new DodgeState(manager);
             states.Add("DodgeState", dodgeState);
             dodgeState.AddTransition(new DodgeToMove(manager, "DodgeState", "MoveState"));
+
+            DamageState damageState = new DamageState(manager);
+            states.Add("DamageState", damageState);
+            damageState.AddTransition(new DamageToMove(manager, "DamageState", "MoveState"));
 
             IsBuilt = true;
             return states;

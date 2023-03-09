@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6af3d41bc0867e047a02d39f3c2004a2, type: 3}
+  m_Name: Knife
+  m_EditorClassIdentifier: 
+  ItemIcon: {fileID: 0}
+  ItemName: 
+  ModelPrefab: {fileID: 6601708619364590288, guid: 2508450c9d7637a4da81debaf009bfaf,
+    type: 3}
+  IsUnarmed: 0
+  Type: 1
+  LightComboClips:
+  - LightCombo1_OnehandSword
+  - LightCombo2_OnehandSword
+  - LightCombo3_OnehandSword
+  HeavyComboClips:
+  - HeavyCombo1_OnehandSword
+  Damage: 10

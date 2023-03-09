@@ -19,7 +19,7 @@ namespace PlayerControl
         protected override bool Condition()
         {
             //基于Animator当前transition名确定是否退出Attack State
-            var info = manager.Animator.GetAnimatorTransitionInfo(0);
+            var info = manager.Animator.GetAnimatorTransitionInfo(1);
             if (info.IsUserName("DodgeExit"))
             {
                 return true;

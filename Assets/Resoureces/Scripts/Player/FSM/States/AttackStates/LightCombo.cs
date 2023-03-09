@@ -23,7 +23,8 @@ namespace PlayerControl
             //完成从外部状态进入攻击状态时的攻击触发
             if (manager.Input.lightAttack)
             {
-                MakeAttack();
+                manager.Attacker.HandleLightAttack(manager.WeaponManager.RightWeapon);
+                manager.Input.lightAttack = false;
             }
         }
 
@@ -31,7 +32,6 @@ namespace PlayerControl
         {
             //重置多余的攻击触发 
             manager.Animator.ResetTrigger(manager.AnimID["LightAttack"]);
-
             base.OnExit();
         }
 
@@ -41,20 +41,9 @@ namespace PlayerControl
 
             if (manager.Input.lightAttack)
             {
-                MakeAttack();
+                manager.Attacker.HandleLightAttack(manager.WeaponManager.RightWeapon);
+                manager.Input.lightAttack = false;
             }
-        }
-
-        private void MakeAttack()
-        {
-            manager.Animator.SetTrigger(manager.AnimID["LightAttack"]);
-            manager.Input.lightAttack = false;
-
-            DamageMessage message = new DamageMessage();
-            message.Message = "Player light attack";
-            message.Attacker = manager.gameObject;
-            message.Weapon = manager.Inventory.RightWeapon;
-            manager.Inventory.WeaponSlotManager.SetRightWeaponDamageMessage(message);
         }
     }
 }

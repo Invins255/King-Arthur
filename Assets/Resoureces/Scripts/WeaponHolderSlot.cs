@@ -5,6 +5,7 @@ using UnityEngine;
 public class WeaponHolderSlot : MonoBehaviour
 {
     public Transform ParentOverride;
+
     public bool IsLeftHandSlot;
     public bool IsRightHandSlot;
 

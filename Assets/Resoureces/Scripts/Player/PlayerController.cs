@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace PlayerControl
 {
-    [RequireComponent(typeof(CharacterController))]
     public class PlayerController : MonoBehaviour
     {
         public PlayerDataSO PlayerData;
@@ -18,20 +17,25 @@ namespace PlayerControl
         //Animation hash IDs
         public Dictionary<string, int> AnimID = new Dictionary<string, int>();
 
+        [HideInInspector]
+        public Queue<DamageMessage> DamageMessageQueue = new Queue<DamageMessage>();
+
         //Components
         private PlayerStateMachine stateMachine;
         public PlayerInputs Input { get { return _input; } }
         private PlayerInputs _input;
         public PlayerStats Stats { get { return _stats; } }
         private PlayerStats _stats;
-        public PlayerInventory Inventory { get { return _inventory; } }
-        private PlayerInventory _inventory;
         public CharacterController Controller { get { return _controller; } }
         private CharacterController _controller;
         public Animator Animator { get { return _animator; } }
         private Animator _animator;
         public GameObject MainCamera { get { return _mainCamera; } }
         private GameObject _mainCamera;
+        public WeaponManager WeaponManager { get { return _weaponManager; } }
+        private WeaponManager _weaponManager;
+        public Attacker Attacker { get { return _attacker; } }
+        private Attacker _attacker;
 
         private void Awake()
         {
@@ -42,14 +46,16 @@ namespace PlayerControl
             //Get components
             _input = GetComponent<PlayerInputs>();
             _stats = GetComponent<PlayerStats>();
-            _inventory = GetComponent<PlayerInventory>();
             _controller = GetComponent<CharacterController>();
             _animator = GetComponent<Animator>();
             _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+            _weaponManager = GetComponent<WeaponManager>();
+            _attacker = GetComponent<Attacker>();
 
             AssignAnimationIDs();
 
             //Set default state
+            //stateMachine.DebugStatesTransition(true);
             stateMachine.SetDefaultState("MoveState");
             stateMachine.OnEnter();
         }
@@ -57,6 +63,17 @@ namespace PlayerControl
         void Update()
         {
             stateMachine.OnUpdate();
+
+            if (Stats.CurrentHealth <= 0)
+                Animator.Play("Death");
+
+            //TEMP
+            if (WeaponManager.LeftWeapon != null)
+                Animator.SetInteger(AnimID["WeaponType"], (int)WeaponManager.LeftWeapon.Type);
+            if (WeaponManager.RightWeapon != null)
+                Animator.SetInteger(AnimID["WeaponType"], (int)WeaponManager.RightWeapon.Type);
+            if (WeaponManager.LeftWeapon == null && WeaponManager.RightWeapon == null) 
+                Animator.SetInteger(AnimID["WeaponType"], 0);
         }
 
         private void OnAnimatorMove()
@@ -73,6 +90,11 @@ namespace PlayerControl
             {
                 AnimID.Add(name, Animator.StringToHash(name));
             }
+        }
+
+        public void OnDamage(DamageMessage message)
+        {
+            DamageMessageQueue.Enqueue(message);
         }
     }
 

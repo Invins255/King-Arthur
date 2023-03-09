@@ -18,6 +18,6 @@ public class PlayerInventory : MonoBehaviour
     private void Start()
     {
         WeaponSlotManager.LoadWeaponOnSlot(LeftWeapon, true);
-        WeaponSlotManager.LoadWeaponOnSlot(RightWeapon, false);
+        WeaponSlotManager.LoadWeaponOnSlot(RightWeapon, false);          
     }
 }

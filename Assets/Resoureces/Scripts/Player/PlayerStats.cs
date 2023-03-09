@@ -18,11 +18,6 @@ namespace PlayerControl
             CurrentHealth = MaxHealth;
         }
 
-        void Update()
-        {
-
-        }
-
         public void TakeDamage(int value)
         {
             CurrentHealth -= value;

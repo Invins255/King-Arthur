@@ -17,4 +17,4 @@ MonoBehaviour:
   RunSpeed: 6
   SpeedChangeRate: 5
   RotateSmoothTime: 0.1
-  MaxHealth: 100
+  MaxHealth: 30

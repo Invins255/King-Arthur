@@ -1,18 +1,25 @@
+using PlayerControl;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyStats : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public EnemyDataSO EnemyData;
+
+    public int MaxHealth;
+    public int CurrentHealth;
+
     void Start()
     {
-        
+        MaxHealth = EnemyData.MaxHealth;
+        CurrentHealth = MaxHealth;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void TakeDamage(int value)
     {
-        
+        CurrentHealth -= value;
+        if (CurrentHealth < 0)
+            CurrentHealth = 0;
     }
 }
