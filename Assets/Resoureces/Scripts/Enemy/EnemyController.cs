@@ -41,6 +41,11 @@ public class EnemyController : MonoBehaviour
     {
         NavMeshAgent.enabled = false;
         Rigidbody.isKinematic = false;
+
+        if (WeaponManager.Weapon != null)
+            Animator.SetInteger("WeaponType", (int)WeaponManager.Weapon.Type);
+        else
+            Animator.SetInteger("WeaponType", 0);
     }
 
     void Update()
@@ -59,8 +64,10 @@ public class EnemyController : MonoBehaviour
 
     private void OnAnimatorMove()
     {
+        NavMeshAgent.velocity = Animator.velocity;
+
         Rigidbody.drag = 0;
-        Rigidbody.velocity = Animator.velocity * Time.deltaTime;
+        Rigidbody.velocity = Animator.velocity;
     }
 
     private void HandleCurrentAction()
@@ -130,10 +137,10 @@ public class EnemyController : MonoBehaviour
         currentRecoverTime = CurrentAttackAction.RecoverTime;
 
         DamageMessage message = new DamageMessage();
-        message.Message = $"{gameObject.name}'s light attack";
+        message.Message = $"{gameObject.name}'s attack";
         message.Attacker = gameObject;
-        message.Weapon = WeaponManager.RightWeapon;
-        GetComponent<WeaponSlotManager>().SetRightWeaponDamageMessage(message);
+        message.Weapon = WeaponManager.Weapon;
+        GetComponent<WeaponSlotManager>().SetWeaponDamageMessage(message);
 
         Animator.Play(CurrentAttackAction.ActionAnimation);
         CurrentAttackAction = null;

@@ -13,10 +13,6 @@ public class DamageCollider : MonoBehaviour
         Collider.gameObject.SetActive(true);
         Collider.enabled = false;
         Collider.isTrigger = true;
-
-        //TEMP
-        Message = new DamageMessage();
-        Message.Message = "Default message";
     }
 
     public void EnableDamageCollider()
@@ -31,9 +27,10 @@ public class DamageCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out Damageable target))
+        if (other.TryGetComponent(out Damageable target) && target.gameObject != Message.Attacker)
         {
-            target.OnDamageEvent?.Invoke(Message);
+            if(target.IsActive)
+                target.OnDamageEvent?.Invoke(Message);
         }
     }
 }

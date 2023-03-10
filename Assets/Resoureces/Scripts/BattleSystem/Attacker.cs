@@ -33,7 +33,7 @@ public class Attacker : MonoBehaviour
         message.Message = $"{gameObject.name}'s light attack";
         message.Attacker = gameObject;
         message.Weapon = weapon;
-        GetComponent<WeaponSlotManager>().SetRightWeaponDamageMessage(message);
+        GetComponent<WeaponSlotManager>().SetWeaponDamageMessage(message);
     }
 
     public void HandleHeavyAttack(WeaponItem weapon)
@@ -56,6 +56,6 @@ public class Attacker : MonoBehaviour
         message.Message = $"{gameObject.name}'s heavy attack";
         message.Attacker = gameObject;
         message.Weapon = weapon;
-        GetComponent<WeaponSlotManager>().SetRightWeaponDamageMessage(message);
+        GetComponent<WeaponSlotManager>().SetWeaponDamageMessage(message);
     }
 }

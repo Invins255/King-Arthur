@@ -25,3 +25,4 @@ MonoBehaviour:
   HeavyComboClips:
   - HeavyCombo1_OnehandSword
   Damage: 5
+  DamageAbsorption: 0.5

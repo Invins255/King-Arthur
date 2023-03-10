@@ -25,3 +25,4 @@ MonoBehaviour:
   - HeavyCombo1_TwohandedSword
   - HeavyCombo2_TwohandedSword
   Damage: 10
+  DamageAbsorption: 0.5

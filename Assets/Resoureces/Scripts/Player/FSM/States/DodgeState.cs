@@ -22,8 +22,7 @@ namespace PlayerControl
             base.OnEnter();
 
             if(manager.Input.dodge)
-                MakeDodge();
-                
+                MakeDodge();         
         }
 
         public override void OnExit()

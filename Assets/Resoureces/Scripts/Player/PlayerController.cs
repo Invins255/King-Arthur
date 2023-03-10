@@ -67,12 +67,9 @@ namespace PlayerControl
             if (Stats.CurrentHealth <= 0)
                 Animator.Play("Death");
 
-            //TEMP
-            if (WeaponManager.LeftWeapon != null)
-                Animator.SetInteger(AnimID["WeaponType"], (int)WeaponManager.LeftWeapon.Type);
-            if (WeaponManager.RightWeapon != null)
-                Animator.SetInteger(AnimID["WeaponType"], (int)WeaponManager.RightWeapon.Type);
-            if (WeaponManager.LeftWeapon == null && WeaponManager.RightWeapon == null) 
+            if(WeaponManager.Weapon != null)
+                Animator.SetInteger(AnimID["WeaponType"], (int)WeaponManager.Weapon.Type);
+            else
                 Animator.SetInteger(AnimID["WeaponType"], 0);
         }
 

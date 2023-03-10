@@ -5,10 +5,6 @@ using UnityEngine;
 public class WeaponHolderSlot : MonoBehaviour
 {
     public Transform ParentOverride;
-
-    public bool IsLeftHandSlot;
-    public bool IsRightHandSlot;
-
     public GameObject CurrentWeaponModel;
 
     public void LoadWeaponModel(WeaponItem weaponItem)
@@ -46,6 +42,9 @@ public class WeaponHolderSlot : MonoBehaviour
     public void UnloadWeaponModelAndDestroy()
     {
         if (CurrentWeaponModel != null)
+        {
             Destroy(CurrentWeaponModel);
+            CurrentWeaponModel = null;
+        }
     }
 }

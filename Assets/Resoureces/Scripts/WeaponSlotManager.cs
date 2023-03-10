@@ -1,86 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class WeaponSlotManager : MonoBehaviour
 {
-    private WeaponHolderSlot leftHandSlot;
-    private WeaponHolderSlot rightHandSlot;
-
-    private DamageCollider leftDamageCollider;
-    private DamageCollider rightDamageCollider;
+    private WeaponHolderSlot holdSlot;
+    private DamageCollider weaponDamageCollider;
 
     private void Awake()
     {
         WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
         foreach (WeaponHolderSlot weaponHolderSlot in weaponHolderSlots)
         {
-            if (weaponHolderSlot.IsLeftHandSlot)
-                leftHandSlot = weaponHolderSlot;
-            if(weaponHolderSlot.IsRightHandSlot)
-                rightHandSlot = weaponHolderSlot;
+            holdSlot = weaponHolderSlot;
         }
     }
 
-    public void LoadWeaponOnSlot(WeaponItem weaponItem, bool isLeft)
+    public void LoadWeaponOnSlot(WeaponItem weaponItem)
     {
-        if (isLeft)
+        if(holdSlot != null)
         {
-            if (leftHandSlot != null)
-            { 
-                leftHandSlot.LoadWeaponModel(weaponItem);     
-                if(leftHandSlot.CurrentWeaponModel != null)
-                {
-                    leftDamageCollider = leftHandSlot.CurrentWeaponModel.GetComponentInChildren<DamageCollider>();
-                }
-            }
-        }
-        else
-        {
-            if(rightHandSlot != null)
+            holdSlot.LoadWeaponModel(weaponItem);
+            if(holdSlot.CurrentWeaponModel!=null)
             {
-                rightHandSlot.LoadWeaponModel(weaponItem);
-                if(rightHandSlot.CurrentWeaponModel != null)
-                {
-                    rightDamageCollider = rightHandSlot.CurrentWeaponModel.GetComponentInChildren<DamageCollider>();
-                }
+                weaponDamageCollider = holdSlot.CurrentWeaponModel.GetComponentInChildren<DamageCollider>();
             }
         }
     }
 
-    public void OpenLeftWeaponDamageCollider()
+    public void OpenWeaponDamageCollider()
     {
-        if(leftDamageCollider != null)
-            leftDamageCollider.EnableDamageCollider();
+        if (weaponDamageCollider != null)
+            weaponDamageCollider.EnableDamageCollider();
     }
 
-    public void CloseLeftWeaponDamageCollider()
+    public void CloseWeaponDamageCollider()
     {
-        if (leftDamageCollider != null)
-            leftDamageCollider.DisableDamageCollider();
+        if (weaponDamageCollider != null)
+            weaponDamageCollider.DisableDamageCollider();
     }
 
-    public void OpenRightWeaponDamageCollider()
+    public void SetWeaponDamageMessage(DamageMessage message)
     {
-        if (rightDamageCollider != null)
-            rightDamageCollider.EnableDamageCollider();
-    }
-
-    public void CloseRightWeaponDamageCollider()
-    {
-        if (rightDamageCollider != null)
-            rightDamageCollider.DisableDamageCollider();
-    }
-
-    public void SetLeftWeaponDamageMessage(DamageMessage message)
-    {
-        if (leftDamageCollider != null)
-            leftDamageCollider.Message = message;
-    }
-
-    public void SetRightWeaponDamageMessage(DamageMessage message)
-    {
-        if (rightDamageCollider != null)
-            rightDamageCollider.Message = message;
+        if (weaponDamageCollider != null)
+            weaponDamageCollider.Message = message;
     }
 }

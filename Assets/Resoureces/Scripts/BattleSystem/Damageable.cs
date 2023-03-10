@@ -26,5 +26,16 @@ public class DamageEvent : UnityEvent<DamageMessage> { }
 /// </summary>
 public class Damageable : MonoBehaviour
 {
+    public bool IsActive = true;
     public DamageEvent OnDamageEvent;
+
+    public void EnableDamage()
+    {
+        IsActive = true;
+    }
+
+    public void DisableDamage()
+    {
+        IsActive = false;
+    }
 }

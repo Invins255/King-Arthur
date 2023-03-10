@@ -22,6 +22,10 @@ public class WeaponItem : Item
     public string[] LightComboClips;
     public string[] HeavyComboClips;
 
-    [Header("Atrributes")]
+    [Header("Damage")]
     public int Damage;
+
+    [Header("Absorption")]
+    [Range(0.0f, 1.0f)]
+    public float DamageAbsorption;
 }

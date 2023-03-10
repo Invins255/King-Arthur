@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyAttacker : MonoBehaviour
 {
     private EnemyController controller;
+    private Animator animator;
 
     public EnemyAttackAction[] AttackActions;
     public EnemyAttackAction CurrentAttackAction;
@@ -12,6 +13,7 @@ public class EnemyAttacker : MonoBehaviour
     private void Awake()
     {
         controller = GetComponent<EnemyController>();
+        animator = GetComponent<Animator>();
     }
 
     public void GetNewAttack()

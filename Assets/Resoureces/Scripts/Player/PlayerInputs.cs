@@ -16,6 +16,7 @@ namespace PlayerControl
         public bool lightAttack;
         public bool heavyAttack;
         public bool dodge;
+        public bool isBlocking = false;
         public bool isTargeting = false;
 
         public void OnMove(InputAction.CallbackContext callback)
@@ -60,6 +61,11 @@ namespace PlayerControl
             {
                 dodge = callback.ReadValueAsButton();
             }
+        }
+
+        public void OnBlock(InputAction.CallbackContext callback)
+        {
+            isBlocking = callback.ReadValueAsButton();
         }
 
         public void OnTarget(InputAction.CallbackContext callback)

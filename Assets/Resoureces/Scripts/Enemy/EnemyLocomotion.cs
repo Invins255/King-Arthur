@@ -15,7 +15,9 @@ public class EnemyLocomotion : MonoBehaviour
     private void Awake()
     {
         controller = GetComponent<EnemyController>();
-        controller.NavMeshAgent.stoppingDistance = controller.EnemyData.StopingDistance;
+
+        NavMeshAgent agent = GetComponent<NavMeshAgent>();
+        agent.stoppingDistance = controller.EnemyData.StopingDistance;
     }
 
     private void FixedUpdate()
@@ -56,7 +58,7 @@ public class EnemyLocomotion : MonoBehaviour
             float target = 0.0f;
             if(DistanceToTarget > controller.EnemyData.StopingDistance)
             {
-                target = controller.EnemyData.WalkThreshold;
+                target = controller.EnemyData.JoggingThreshold;
             }
             else
             {

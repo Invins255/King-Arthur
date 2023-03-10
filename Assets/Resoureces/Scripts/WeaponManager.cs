@@ -6,18 +6,29 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour
 {
     public WeaponSlotManager WeaponSlotManager;
+    public WeaponItem Weapon;
+    public BlockCollider BlockCollider;
 
-    public WeaponItem LeftWeapon;
-    public WeaponItem RightWeapon;
 
     private void Awake()
     {
         WeaponSlotManager = GetComponent<WeaponSlotManager>();
+        BlockCollider = GetComponentInChildren<BlockCollider>();
     }
 
     private void Start()
     {
-        WeaponSlotManager.LoadWeaponOnSlot(LeftWeapon, true);
-        WeaponSlotManager.LoadWeaponOnSlot(RightWeapon, false);
+        WeaponSlotManager.LoadWeaponOnSlot(Weapon);
+    }
+
+    public void OpenBlockCollider()
+    {
+        BlockCollider.SetDamageAbsortion(Weapon);
+        BlockCollider.EnableBlockingCollider();
+    }
+
+    public void CloseBlockCollider()
+    {
+        BlockCollider.DisableBlockingCollider();
     }
 }
