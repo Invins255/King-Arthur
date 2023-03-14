@@ -18,6 +18,14 @@ namespace PlayerControl
         public bool dodge;
         public bool isBlocking = false;
         public bool isTargeting = false;
+        public bool interact = false;
+        public bool changeWeapon = false;
+
+        private void LateUpdate()
+        {
+            interact = false;
+            changeWeapon = false;
+        }
 
         public void OnMove(InputAction.CallbackContext callback)
         {
@@ -71,6 +79,16 @@ namespace PlayerControl
         public void OnTarget(InputAction.CallbackContext callback)
         {
             isTargeting = !isTargeting;
+        }
+
+        public void OnInteract(InputAction.CallbackContext callback)
+        {
+            interact = callback.ReadValueAsButton();
+        }
+
+        public void OnChangeWeapon(InputAction.CallbackContext callback)
+        {
+            changeWeapon = callback.ReadValueAsButton();
         }
     }
 

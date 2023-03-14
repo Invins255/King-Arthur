@@ -18,6 +18,9 @@ namespace PlayerControl
 
         protected override bool Condition()
         {
+            if (manager.WeaponManager.CurrentWeapon.Type == 0)
+                return false;
+
             //Get Attack input
             if (manager.Input.lightAttack || manager.Input.heavyAttack)
             {

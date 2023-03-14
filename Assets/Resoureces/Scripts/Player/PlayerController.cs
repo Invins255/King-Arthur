@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 namespace PlayerControl
 {
@@ -11,6 +12,9 @@ namespace PlayerControl
         [Header("Move")]
         public float CurrentHorizontalSpeed;
         public float CurrentVerticalSpeed;
+
+        [Header("Interact")]
+        public float InteractRadius = 1.0f;
 
         [Header("Animator parameter IDs")]
         public string[] AnimParams;
@@ -67,10 +71,14 @@ namespace PlayerControl
             if (Stats.CurrentHealth <= 0)
                 Animator.Play("Death");
 
-            if(WeaponManager.Weapon != null)
-                Animator.SetInteger(AnimID["WeaponType"], (int)WeaponManager.Weapon.Type);
+            if(WeaponManager.CurrentWeapon != null)
+                Animator.SetInteger(AnimID["WeaponType"], (int)WeaponManager.CurrentWeapon.Type);
             else
                 Animator.SetInteger(AnimID["WeaponType"], 0);
+
+            CheckInteractableObject();
+
+            HandleChangeWeapon(); 
         }
 
         private void OnAnimatorMove()
@@ -92,6 +100,30 @@ namespace PlayerControl
         public void OnDamage(DamageMessage message)
         {
             DamageMessageQueue.Enqueue(message);
+        }
+
+        public void CheckInteractableObject()
+        {
+            Collider[] colliders = Physics.OverlapSphere(transform.position, InteractRadius);
+            for (int i = 0; i < colliders.Length; i++) 
+            {
+                Interactable interactableObjects = colliders[i].GetComponent<Interactable>();
+                if (interactableObjects != null)
+                {
+                    //TODO: Show interact text
+
+                    if (Input.interact)
+                    {
+                        interactableObjects.Interact(this);
+                    }
+                }
+            }
+        }
+
+        public void HandleChangeWeapon()
+        {
+            if (Input.changeWeapon)
+                WeaponManager.ChangeWeapon();
         }
     }
 

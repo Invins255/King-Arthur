@@ -28,6 +28,7 @@ namespace PlayerControl
             AttackState attackState = new AttackState(manager, attackStateFactory);
             states.Add("AttackState", attackState);
             attackState.AddTransition(new AttackToMove(manager, "AttackState", "MoveState"));
+            attackState.AddTransition(new AttackToDamage(manager, "AttackState", "DamageState"));
 
             DodgeState dodgeState = new DodgeState(manager);
             states.Add("DodgeState", dodgeState);

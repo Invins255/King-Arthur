@@ -23,7 +23,7 @@ namespace PlayerControl
             //完成从外部状态进入攻击状态时的攻击触发
             if (manager.Input.lightAttack)
             {
-                manager.Attacker.HandleLightAttack(manager.WeaponManager.Weapon);
+                manager.Attacker.HandleLightAttack(manager.WeaponManager.CurrentWeapon);
                 manager.Input.lightAttack = false;
             }
         }
@@ -41,7 +41,7 @@ namespace PlayerControl
 
             if (manager.Input.lightAttack)
             {
-                manager.Attacker.HandleLightAttack(manager.WeaponManager.Weapon);
+                manager.Attacker.HandleLightAttack(manager.WeaponManager.CurrentWeapon);
                 manager.Input.lightAttack = false;
             }
         }

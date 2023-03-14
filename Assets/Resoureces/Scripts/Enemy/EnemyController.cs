@@ -42,8 +42,8 @@ public class EnemyController : MonoBehaviour
         NavMeshAgent.enabled = false;
         Rigidbody.isKinematic = false;
 
-        if (WeaponManager.Weapon != null)
-            Animator.SetInteger("WeaponType", (int)WeaponManager.Weapon.Type);
+        if (WeaponManager.CurrentWeapon != null)
+            Animator.SetInteger("WeaponType", (int)WeaponManager.CurrentWeapon.Type);
         else
             Animator.SetInteger("WeaponType", 0);
     }
@@ -139,7 +139,7 @@ public class EnemyController : MonoBehaviour
         DamageMessage message = new DamageMessage();
         message.Message = $"{gameObject.name}'s attack";
         message.Attacker = gameObject;
-        message.Weapon = WeaponManager.Weapon;
+        message.Weapon = WeaponManager.CurrentWeapon;
         GetComponent<WeaponSlotManager>().SetWeaponDamageMessage(message);
 
         Animator.Play(CurrentAttackAction.ActionAnimation);

@@ -19,7 +19,7 @@ namespace PlayerControl
         public override void OnEnter()
         {
             base.OnEnter();
-            manager.Animator.Play("TwohandedSword_BlockBegin");
+            manager.Animator.Play("BlockBegin");
             manager.WeaponManager.OpenBlockCollider();
         }
 

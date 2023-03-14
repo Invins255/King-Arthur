@@ -96,7 +96,7 @@ public class EnemyLocomotion : MonoBehaviour
         controller.Animator.SetFloat("VelocityY", 0.0f);
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         if(controller != null)
         { 

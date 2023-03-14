@@ -22,7 +22,7 @@ public class WeaponSlotManager : MonoBehaviour
         if(holdSlot != null)
         {
             holdSlot.LoadWeaponModel(weaponItem);
-            if(holdSlot.CurrentWeaponModel!=null)
+            if (holdSlot.CurrentWeaponModel != null) 
             {
                 weaponDamageCollider = holdSlot.CurrentWeaponModel.GetComponentInChildren<DamageCollider>();
             }

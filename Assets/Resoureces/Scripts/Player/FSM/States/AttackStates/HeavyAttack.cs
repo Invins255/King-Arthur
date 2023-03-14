@@ -21,7 +21,7 @@ namespace PlayerControl
             base.OnEnter();
             if (manager.Input.heavyAttack)
             {
-                manager.Attacker.HandleHeavyAttack(manager.WeaponManager.Weapon);
+                manager.Attacker.HandleHeavyAttack(manager.WeaponManager.CurrentWeapon);
                 manager.Input.heavyAttack = false;
             }
         }
@@ -40,7 +40,7 @@ namespace PlayerControl
 
             if (manager.Input.heavyAttack)
             {
-                manager.Attacker.HandleHeavyAttack(manager.WeaponManager.Weapon);
+                manager.Attacker.HandleHeavyAttack(manager.WeaponManager.CurrentWeapon);
                 manager.Input.heavyAttack = false;
             }
         }

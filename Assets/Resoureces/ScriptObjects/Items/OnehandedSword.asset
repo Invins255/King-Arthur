@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: OnehandedSword
   m_EditorClassIdentifier: 
   ItemIcon: {fileID: 0}
-  ItemName: 
+  ItemName: Onehanded Sword
   ModelPrefab: {fileID: 6814976817244057160, guid: e966dfe06b5b99845b72921f48a394e0,
     type: 3}
-  IsUnarmed: 0
   Type: 1
   LightComboClips:
   - LightCombo1_OnehandSword

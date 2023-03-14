@@ -14,7 +14,6 @@ public enum WeaponType
 public class WeaponItem : Item
 {
     public GameObject ModelPrefab;
-    public bool IsUnarmed;
 
     public WeaponType Type = WeaponType.None;
 

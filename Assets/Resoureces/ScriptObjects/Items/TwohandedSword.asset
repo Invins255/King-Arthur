@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: TwohandedSword
   m_EditorClassIdentifier: 
   ItemIcon: {fileID: 0}
-  ItemName: 
+  ItemName: Twohanded Sword
   ModelPrefab: {fileID: 4344347358649291655, guid: dc2e39deb077b3140a04301289ebd774,
     type: 3}
-  IsUnarmed: 0
   Type: 2
   LightComboClips:
   - LightCombo1_TwohandedSword
